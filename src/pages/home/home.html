@@ -1,14 +1,48 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Coffee App
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content class="main">
+    <ion-item>
+
+        <ion-input type="text" placeholder="Provide your Name" [(ngModel)]="orderName"></ion-input>
+    </ion-item>
+    <h3>TOPPINGS</h3>
+    <div class="check">
+        <ion-item>
+            <ion-label>Whipped Cream</ion-label>
+            <ion-checkbox [(ngModel)]="cream" (ionChange)="checkFlavour('w')"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+            <ion-label>Chocolate</ion-label>
+            <ion-checkbox [(ngModel)]="choco" (ionChange)="checkFlavour('c')"></ion-checkbox>
+        </ion-item>
+    </div>
+    <h3>QUANTITY</h3>
+    <div class="quantity ">
+
+        <button ion-button small (click)="onClick( 's') ">-</button>
+        <h1>{{quantity}}</h1>
+        <button ion-button small (click)="onClick('a') ">+</button>
+    </div>
+    <h3>ORDER SUMMARY</h3>
+    <div class="summary" *ngIf="showComp">
+        Name :
+        <br> {{orderName}}
+        <br> {{addCream}}
+        <br>{{addChoco}}
+        <br> Quantity : {{quantity}}
+        <br> price : R{{totPrice}}.00
+        <br> THANK YOU!!
+    </div>
+    <div class="buttons">
+        <button ion-button small (click)="showComps()">ORDER</button>
+        <button ion-button small (click)="reset()">RESET</button>
+    </div>
+
+
 </ion-content>
